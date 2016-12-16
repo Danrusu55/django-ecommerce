@@ -1,11 +1,13 @@
-<div>
-    <h1><a href="/">Django Girls Blog</a></h1>
-</div>
+{% extends 'shopapp/base.html' %}
 
-{% for product in products %}
-    <div>
-        <p>published: {{ product.published_date }}</p>
-        <h1><a href="">{{ product.title }}</a></h1>
-        <p>{{ product.text|linebreaksbr }}</p>
-    </div>
-{% endfor %}
+{% block content %}
+  {% for product in products %}
+      <div class="product">
+          <div class="date">
+              {{ product.published_date }}
+          </div>
+          <h1><a href="{% url 'product_detail' pk=product.pk %}">{{ product.title }}</a></h1>
+          <p>{{ product.text|linebreaksbr }}</p>
+      </div>
+  {% endfor %}
+{% endblock %}
